@@ -10,6 +10,7 @@ func main() {
 
 	fmt.Println(longestCommonPrefix(input))
 	fmt.Println(longestCommonPrefix1(input))
+	fmt.Println(longestCommonPrefix2(input))
 	os.Exit(1)
 }
 
@@ -50,7 +51,7 @@ func longestCommonPrefix(strs []string) string {
 }
 
 func longestCommonPrefix1(strs []string) string {
-	if len(strs) ==0 {
+	if len(strs) == 0 {
 		return ""
 	}
 	var prefix string
@@ -82,4 +83,42 @@ func longestCommonPrefix1(strs []string) string {
 	}
 
 	return prefix
+}
+
+func longestCommonPrefix2(strs []string) string {
+	if len(strs) == 0 {
+		return ""
+	}
+
+	if len(strs) == 1 {
+		return strs[0]
+	}
+
+	prefixIndex := -1
+	firstStr := strs[0]
+	for i := 0; i < len(firstStr); i++ {
+		character := firstStr[i]
+		flag := false
+		for j := 1; j < len(strs); j++ {
+			compareStr := strs[j]
+			if len(compareStr) > i && character == compareStr[i] {
+				flag = true
+			} else {
+				flag = false
+				break
+			}
+		}
+
+		if flag {
+			prefixIndex = i
+		} else {
+			break
+		}
+	}
+
+	if prefixIndex >= 0 {
+		return firstStr[0:prefixIndex+1]
+	} else {
+		return ""
+	}
 }
