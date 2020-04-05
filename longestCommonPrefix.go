@@ -1,11 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
 	input := [] string {"flower","flow","flight"}
 
 	fmt.Println(longestCommonPrefix(input))
+	fmt.Println(longestCommonPrefix1(input))
+	os.Exit(1)
 }
 
 func longestCommonPrefix(strs []string) string {
@@ -42,4 +47,39 @@ func longestCommonPrefix(strs []string) string {
 	}
 
 	return ""
+}
+
+func longestCommonPrefix1(strs []string) string {
+	if len(strs) ==0 {
+		return ""
+	}
+	var prefix string
+	prefix = strs[0]
+	for i := 1; i < len(strs); i++ {
+		curentStr := strs[i]
+		var minStr, compareStr string
+		if len(prefix) > len(curentStr) {
+			minStr = curentStr
+			compareStr = prefix
+		} else {
+			minStr = prefix
+			compareStr = curentStr
+		}
+
+		flag := false
+		for i := len(minStr); i > 0; i-- {
+			if minStr[0:i] == compareStr[0:i] {
+				prefix = minStr[0:i]
+				flag = true
+				break
+			}
+		}
+
+		if !flag {
+			prefix = ""
+			break
+		}
+	}
+
+	return prefix
 }
