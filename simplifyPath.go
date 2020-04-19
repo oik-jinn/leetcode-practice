@@ -6,13 +6,6 @@ import "strings"
 
 func main() {
 	path := "/a//b////c/d//././/.."
-	// path = "/.../"
-	// path = "/a/./b/../../c/"
-	path = "/a/../../b/../c//.//"
-	// path = "/..hidden"
-	// path = "/home/foo"
-	// path = "/a//b////c/d//././/.."
-	// path = "/home//foo/"
 	fmt.Println(simplifyPath(path))
 	os.Exit(1)
 }
