@@ -47,7 +47,6 @@ func twoSum1(nums []int, target int) []int {
 
 	}
 
-
 	result := make([]int, 2)
 	index := 0
 	one := nums[start]
